@@ -12,6 +12,14 @@
     
     
     
+    <tags>
+      
+      <tag>web渗透</tag>
+      
+      <tag>xss</tag>
+      
+    </tags>
+    
   </entry>
   
   
@@ -25,6 +33,12 @@
     
     
     
+    <tags>
+      
+      <tag>内网</tag>
+      
+    </tags>
+    
   </entry>
   
   
@@ -37,6 +51,14 @@
     <content type="html"><![CDATA[<h3 id="编辑器路径查找"><a href="#编辑器路径查找" class="headerlink" title="编辑器路径查找"></a>编辑器路径查找</h3><ul><li>查找编辑器目录<ul><li>目录扫描</li><li>目录遍历</li><li>蜘蛛爬行</li><li>扫描编辑器二级目录</li><li>高位端口</li></ul></li><li>注意事项：<ul><li>查找路径时应注意站中站和子站的编辑器路径</li><li>如果进入后台查找编辑器未能正常显示的，可以利用审查元素搜索editor等关键字、或者换低版本浏览器打开查看编辑器</li></ul></li></ul><h3 id="FCK编辑器漏洞"><a href="#FCK编辑器漏洞" class="headerlink" title="FCK编辑器漏洞"></a>FCK编辑器漏洞</h3><p><img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220614141559.png"></p><ul><li><p>FCKeditor编辑器页 </p><ul><li>FCKeditor&#x2F;_samples&#x2F;default.html</li></ul></li><li><p>查看编辑器版本</p><ul><li>FCKeditor&#x2F;_whatsnew.html</li></ul></li><li><p>查看文件上传路径</p><ul><li>fckeditor&#x2F;editor&#x2F;filemanager&#x2F;browser&#x2F;default&#x2F;connectors&#x2F;asp&#x2F;connector.asp?Command&#x3D;GetFoldersAndFiles&amp;Type&#x3D;Image&amp;CurrentFolder&#x3D;&#x2F; <br><img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220614142320.png"></li></ul></li><li><p>过狗小技巧</p><ul><li>%00阶段上传脚本时遇到阿里云防护可以通过连发三个包过去</li><li>iis 3.0 6.0均存在解析漏洞, 6.0可通过抓包修改 递归创建两个目录<img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220614151659.png"></li><li>%00截断不了的话, 在后面加个.<img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220614152012.png"></li></ul></li></ul><h3 id="EWEB编辑器漏洞"><a href="#EWEB编辑器漏洞" class="headerlink" title="EWEB编辑器漏洞"></a>EWEB编辑器漏洞</h3><p><img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220614153114.png"></p><p><strong>eweb编辑器利用流程</strong></p><ol><li>查找eweb编辑器路径, 找eweb管理后台</li><li>进入后台，修改上传文件类型</li><li>上传脚本拿shell</li><li>如果没有后台<ol><li>看是否能下载数据库，看数据库中有没有可以上传脚本的样式，构造上传</li><li>利用eweb目录遍历漏洞，找到网站数据库，下载破解管理员密码进后台拿shell</li><li>查找对用编辑器版本漏洞利用拿shell</li></ol></li></ol><ul><li><p>eWebEditor利用基础知识</p><ul><li>默认后台地址：&#x2F;ewebeditor&#x2F;admin_login.asp </li><li>数据库路径：[PATH]&#x2F;db&#x2F;ewebeditor.mdb</li><li>[PATH]&#x2F;db&#x2F;db.mdb – 某些CMS里是这个数据库 </li><li>也可尝试 [PATH]&#x2F;db&#x2F;%23ewebeditor.mdb – 某些管理员自作聪明的小伎俩</li></ul></li><li><p>有修改权限的利用</p><ul><li>通过增加样式–设置-添加插入图片-getshell</li><li>不能添加工具栏，但设定好了某样式中的文件类型</li><li>修改action字段<ul><li>比如 ID&#x3D;46 s-name &#x3D;standard1 </li><li>构造 代码: ewebeditor.asp?id&#x3D;content style&#x3D;standard </li><li>ID和和样式名改过后 ewebeditor.asp?id&#x3D;46&amp;style&#x3D;standard1 <br>　　eWebEditor遍历目录漏洞</li></ul></li></ul></li><li><p>无修改权限</p><ul><li>目录遍历<ul><li><a href="http://www.webshell.com/admin/editor/admin_uploadfile.asp?id=&amp;dir=">http://www.webshell.com/admin/editor/admin_uploadfile.asp?id=&amp;dir=</a>..</li></ul></li></ul></li><li><p>eWebEditor 5.2 列目录漏洞</p><ul><li>ewebeditor&#x2F;asp&#x2F;browse.asp</li><li>过滤不严，造成遍历目录漏洞 </li><li>利用WebEditor session欺骗漏洞,进入后台</li></ul></li><li><p>eWebEditor 2.8 商业版插一句话木马</p><ul><li>登陆后台，点击修改密码—新密码设置为 1”:eval request(“h”)’ </li><li>设置成功后，访问asp&#x2F;config.asp文件即可，一句话木马被写入到这个文件里面了.</li></ul></li></ul><p> </p>]]></content>
     
     
+    
+    <tags>
+      
+      <tag>web渗透</tag>
+      
+      <tag>编辑器</tag>
+      
+    </tags>
     
   </entry>
   
