@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>windows基础</title>
+    <link href="/2022/07/03/windows%E5%9F%BA%E7%A1%80/"/>
+    <url>/2022/07/03/windows%E5%9F%BA%E7%A1%80/</url>
+    
+    <content type="html"><![CDATA[<h3 id="Windows基础"><a href="#Windows基础" class="headerlink" title="Windows基础"></a>Windows基础</h3><ul><li>如果Windows服务器上存在安全狗<ul><li>不能kill</li><li>不能暂停</li><li>sc config “safedog center guarder” start&#x3D;disable</li><li>通过上面命令重启后就可以关掉安全狗了</li></ul></li><li>防火墙禁止端口出网<ul><li>端口转发 将3389转发到80端口</li><li>隧道技术</li></ul></li><li>注册表<ul><li>可以在注册表里面写入隐藏后门</li></ul></li></ul><h3 id="Windows上的常用端口"><a href="#Windows上的常用端口" class="headerlink" title="Windows上的常用端口"></a>Windows上的常用端口</h3><ul><li>常用端口<ul><li>HTTP协议代理服务器常用端口号：80&#x2F;8080&#x2F;3128&#x2F;8081&#x2F;9080</li><li>FTP（文件传输）协议代理服务器常用端口号：21</li><li>Telnet（远程登录）协议代理服务器常用端口：23</li><li>TFTP（TrivialFile Transfer Protocol ），默认的端口号为69&#x2F;udp；</li><li>SSH（安全登录）、SCP（文件传输）、端口重定向，默认的端口号为22&#x2F;tcp；</li><li>SMTP Simple Mail TransferProtocol (E-mail)，默认的端口号为25&#x2F;tcp（木马Antigen、Email</li><li>Password Sender、HaebuCoceda、ShtrilitzStealth、WinPC、WinSpy都开放这个端口）；</li><li>POP3 Post Office Protocol(E-mail) ，默认的端口号为110&#x2F;tcp；</li><li>TOMCAT，默认的端口号为8080；</li><li>WIN2003远程登陆，默认的端口号为3389；</li><li>Oracle 数据库，默认的端口号为1521；</li><li>MS SQL*SERVER数据库server，默认的端口号为1433&#x2F;tcp1433&#x2F;udp；</li><li>QQ，默认的端口号为1080&#x2F;udp</li></ul></li></ul><h3 id="常用cmd命令"><a href="#常用cmd命令" class="headerlink" title="常用cmd命令"></a>常用cmd命令</h3><ul><li>cmd<ul><li>color  改变cmd颜色</li><li>ping -t -l 65550 ip死亡之ping(发送大于64K的文件并一直ping就成了死亡之ping)</li><li>ipconfig   查看ip</li><li>ipconfig&#x2F;release  释放ip</li><li>ipconfig&#x2F;renew  重新获得ip</li><li>systeminfo  查看系统信息<br>具体查看是否打了补丁</li><li>arp-a</li><li>net view 查看局域网内其他计算机名称</li><li>shutdown -s -t 180 -c “你被黑了，系统马上关机”</li><li>dir  查看目录</li><li>cd  切换目录</li><li>start  <a href="http://www.cracer.com/">www.cracer.com</a>   打开网页</li><li>start  123.txt 打开123.txt</li><li>copy  con c:\123.txt  创建123.txt文件</li><li>hello cracer</li><li>ctrl+z回车</li><li>md　目录名创建目录</li><li>rd123  删除文件夹</li><li>ren原文件名　新文件名 重命名文件名 </li><li>del  删除文件</li><li>copy  复制文件</li><li>move 移动文件</li><li>tree 树形列出文件夹结构</li><li>telnet</li><li>net use k: \192.168.1.1\c$</li><li>net use k: \192.168.1.1\c$ &#x2F;del</li><li>net start 查看开启了哪些服务</li><li>net start 服务名　开启服务；(如:netstart telnet， netstart schedule) </li><li>net stop 服务名停止某服务</li><li>net user 用户名　密码　&#x2F;add建立用户 </li><li>net user guest &#x2F;active:yes激活guest用户</li><li>net user 查看有哪些用户</li><li>net user 帐户名查看帐户的属性 </li><li>net locaLGroupadministrators 用户名 &#x2F;add把“用户”添加到管理员中使其具有管理员权限,注意：administrator后加s用复数</li><li>net user guest 12345 用guest用户登陆后用将密码改为12345</li><li>net password 密码更改系统登陆密码 </li><li>net share 查看本地开启的共享</li><li>net share ipc$开启ipc$共享</li><li>net share ipc$&#x2F;del 删除ipc$共享</li><li>net share c$ &#x2F;del 删除C：共享</li><li>Tasklist查看进程</li><li>Tsklkill&#x2F;imqq.exe &#x2F;f   结束进程</li><li>Tracert    追踪路由</li><li>Echo  “”命令行写入文件</li><li>Query user  查看登录用户</li><li>Msguser “hello”与其他系统账号聊天</li><li>powershell -exec bypass .\1.ps1</li></ul></li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>windows</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>信息收集</title>
     <link href="/2022/07/03/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
     <url>/2022/07/03/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</url>
