@@ -16,29 +16,23 @@
   <meta name="author" content="Neiiiiil">
   <meta name="keywords" content="">
   
-    <meta name="description" content="xss概念 危害">
+    <meta name="description" content="菜的睡不着觉了 前言 立一个flag, 每天至少花俩小时做ctf训练 This flag start at 2022-07-23">
 <meta property="og:type" content="article">
-<meta property="og:title" content="xss">
-<meta property="og:url" content="https://neiiiiil.github.io/2022/06/23/xss/index.html">
+<meta property="og:title" content="CTFShow练习">
+<meta property="og:url" content="https://neiiiiil.github.io/2022/07/22/CTFShow%E7%BB%83%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Neil&#39;s Blog">
-<meta property="og:description" content="xss概念 危害">
+<meta property="og:description" content="菜的睡不着觉了 前言 立一个flag, 每天至少花俩小时做ctf训练 This flag start at 2022-07-23">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220623161822.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220623162154.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220623162335.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220628162112.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220711211334.png">
-<meta property="article:published_time" content="2022-06-23T07:23:33.000Z">
-<meta property="article:modified_time" content="2022-07-11T23:54:25.665Z">
+<meta property="article:published_time" content="2022-07-22T14:45:44.000Z">
+<meta property="article:modified_time" content="2022-07-22T14:49:00.897Z">
 <meta property="article:author" content="Neiiiiil">
-<meta property="article:tag" content="web渗透">
-<meta property="article:tag" content="xss">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220623161822.png">
   
   
   
-  <title>xss - Neil&#39;s Blog</title>
+  <title>CTFShow练习 - Neil&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="xss"></span>
+            <span id="subtitle" data-typed-text="CTFShow练习"></span>
           
         </div>
 
@@ -212,8 +206,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-23 15:23" pubdate>
-          2022年6月23日 下午
+        <time datetime="2022-07-22 22:45" pubdate>
+          2022年7月22日 晚上
         </time>
       </span>
     
@@ -224,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          56 字
         
       </span>
     
@@ -235,7 +229,7 @@
         
         
         
-          14 分钟
+          1 分钟
         
       </span>
     
@@ -273,154 +267,14 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">xss</h1>
+            <h1 style="display: none">CTFShow练习</h1>
             
             <div class="markdown-body">
               
-              <h3 id="XSS-介绍及分类"><a href="#XSS-介绍及分类" class="headerlink" title="XSS 介绍及分类"></a>XSS 介绍及分类</h3><ul>
-<li><p>认识xss</p>
-<ul>
-<li>XSS（cross-site script）跨站脚本自1996年诞生以来，一直被OWASP(open web application security project) 评为十大安全漏洞中的第二威胁漏洞。也有黑客把xss当做新型的“缓冲区溢出攻击”，而JavaScript是新型的shellcode。</li>
-</ul>
-</li>
-<li><p>什么是跨站脚本</p>
-<ul>
-<li>是一种经常出现在web应用程序中的计算机安全漏洞，是由于web应用程序对用户的输入过滤不严而产生的。攻击者利用网站漏洞把恶意的脚本代码注入到网页中，当其他用户浏览这些网页时，就会执行其中的恶意代码，对受害用户可能采用cookie资料窃取，会话劫持，钓鱼欺骗等攻击手段</li>
-</ul>
-</li>
-<li><p>跨站脚本实例</p>
-<ul>
-<li><img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220623161822.png" srcset="/img/loading.gif" lazyload></li>
-</ul>
-</li>
-<li><p>XSS危害</p>
-<ul>
-<li>网络钓鱼，包括盗取各类的用户账号</li>
-<li>窃取用户cookie</li>
-<li>窃取用户浏览请回话</li>
-<li>强制弹出广告页面、刷流量</li>
-<li>网页挂马</li>
-<li>提升用户权限，进一步渗透网站</li>
-<li>传播跨站脚本蠕虫等</li>
-</ul>
-</li>
-<li><p>闭合优先的标签</p>
-<ul>
-<li>&lt;!–</li>
-<li>&lt;iframe&gt;</li>
-<li>&lt;noframes&gt;</li>
-<li>&lt;noscript&gt;</li>
-<li>&lt;script&gt;</li>
-<li>&lt;style&gt;</li>
-<li>&lt;textarea&gt;</li>
-<li>&lt;title&gt;</li>
-<li>&lt;xmp&gt;</li>
-</ul>
-</li>
-<li><p>反射型XSS</p>
-<ul>
-<li>反射型跨站脚本也称作非持久型、参数型跨站脚本、这类型的脚本是最常见的 ，也是使用最为广泛的一种，主要用于将恶意的脚本附加到URL地址的参数中</li>
-<li>构造含有恶意js代码的url</li>
-<li>一般使用的将构造好的URL发给受害者，是受害者点击触发，而且只执行一次，非持久化。s</li>
-<li>注入点<ul>
-<li>搜索框</li>
-</ul>
-</li>
-<li>反射型XSS攻击模型<ul>
-<li><img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220623162154.png" srcset="/img/loading.gif" lazyload></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>存储型XSS</p>
-<ul>
-<li>存储型xss比反射型跨站脚本更具威胁性，并且可能影响到web服务器的自身安全。</li>
-<li>此类XSS不需要用户点击特定的URL就能执行跨站脚本，攻击者事先讲恶意JavaScript代码上传或存储到漏洞服务器中，只要受害者浏览包含此恶意的代码的页面就会执行恶意代码。</li>
-<li>注入点<ul>
-<li>用户注册所有表单<ul>
-<li>用户名</li>
-<li>姓名</li>
-<li>client-ip</li>
-<li>X-forwarded-for</li>
-<li>referer</li>
-<li>……</li>
-</ul>
-</li>
-<li>修改资料(各种表单)</li>
-<li>留言板</li>
-<li>一切可能留到数据库的表单</li>
-<li>APP的表单</li>
-</ul>
-</li>
-<li><img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220623162335.png" srcset="/img/loading.gif" lazyload></li>
-</ul>
-</li>
-<li><p>DOM型xss</p>
-<ul>
-<li>攻击模型和反射型xss类型</li>
-<li>通过审查元素追踪触发代码的节点，通过闭合构造攻击语句</li>
-</ul>
-</li>
-<li><p>防御绕过</p>
-<ul>
-<li>变换标签</li>
-<li>绕过 magic_quotes_gpc<ul>
-<li><img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220628162112.png" srcset="/img/loading.gif" lazyload></li>
-</ul>
-</li>
-<li>编码				</li>
-<li>改变大小写</li>
-<li>代码转义<ul>
-<li>HTML Characters<ul>
-<li>需要带上一个标签的属性</li>
-<li>一层一层转义</li>
-</ul>
-</li>
-<li>XSS 编码<ul>
-<li>xss常用的编码</li>
-<li>html实体编码，例如：&amp;#x61;&amp;#x6c;&amp;#x65;&amp;#x72;&amp;#x74;&amp;#x28;&amp;#x29;</li>
-<li>进制类，例如：\x61\x6c\x65\x72\x74\x60\x78\x73\x73\x60，某些时候，也有不带x,例如：\5c\6a</li>
-<li>Unicode，例如：\u0061\u006c\u0065\u0072\u0074\u0060\u4e2d\u6587\u4e5f\u53ef\u4ee5\u0060</li>
-<li>纯转义，例如：&#39;   &quot;   &lt;   &gt; ,这样的在特殊字符前加\进行转义。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>钓鱼</p>
-<ul>
-<li>httrack 原生编码下载网页</li>
-<li>http-only启用时的攻击<ul>
-<li><img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220711211334.png" srcset="/img/loading.gif" lazyload></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="CSRF-漏洞讲解"><a href="#CSRF-漏洞讲解" class="headerlink" title="CSRF 漏洞讲解"></a>CSRF 漏洞讲解</h3><ul>
-<li><p>CSRF漏洞</p>
-<ul>
-<li>CSRF（Cross-site request forgery跨站请求伪造，也被称为“One Click Attack”或者Session Riding，通常缩写为CSRF或者XSRF，是一种对网站的恶意利用。尽管听起来像跨站脚本（XSS），但它与XSS非常不同，并且攻击方式几乎相左。XSS利用站点内的信任用户，而CSRF则通过伪装来自受信任用户的请求来利用受信任的网站。与XSS攻击相比，CSRF攻击往往不大流行（因此对其进行防范的资源也相当稀少）和难以防范，所以被认为比XSS更具危险性。</li>
-</ul>
-</li>
-<li><p>漏洞挖掘</p>
-<ul>
-<li>挖掘工具<ul>
-<li>netspark</li>
-<li>AWVS</li>
-<li>appscan</li>
-<li>burp</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>防御</p>
-<ul>
-<li>referer判断</li>
-<li>验证码</li>
-</ul>
-</li>
+              <p><strong>菜的睡不着觉了</strong></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li>立一个flag, 每天至少花俩小时做ctf训练</li>
+<li>This flag start at 2022-07-23</li>
 </ul>
 
               
@@ -433,9 +287,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/web%E6%B8%97%E9%80%8F/">#web渗透</a>
+        <a href="/tags/CTF/">#CTF</a>
       
-        <a href="/tags/xss/">#xss</a>
+        <a href="/tags/%E6%B8%97%E9%80%8F/">#渗透</a>
       
     </div>
   
@@ -447,8 +301,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>xss</div>
-      <div>https://neiiiiil.github.io/2022/06/23/xss/</div>
+      <div>CTFShow练习</div>
+      <div>https://neiiiiil.github.io/2022/07/22/CTFShow练习/</div>
     </div>
     <div class="license-meta">
       
@@ -460,7 +314,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年6月23日</div>
+          <div>2022年7月22日</div>
         </div>
       
       
@@ -490,18 +344,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/07/03/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" title="信息收集">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">信息收集</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/14/%E5%86%85%E7%BD%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="内网环境搭建">
-                        <span class="hidden-mobile">内网环境搭建</span>
+                      <a href="/2022/07/03/windows%E5%9F%BA%E7%A1%80/" title="windows基础">
+                        <span class="hidden-mobile">windows基础</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
