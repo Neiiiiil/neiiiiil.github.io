@@ -16,23 +16,31 @@
   <meta name="author" content="Neiiiiil">
   <meta name="keywords" content="">
   
-    <meta name="description" content="ctf刷题">
+    <meta name="description" content="PHP相关漏洞利用以及危害">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CTFShow练习">
-<meta property="og:url" content="https://neiiiiil.github.io/2022/07/22/CTFShow%E7%BB%83%E4%B9%A0/index.html">
+<meta property="og:title" content="PHP相关漏洞">
+<meta property="og:url" content="https://neiiiiil.github.io/2022/07/22/PHP%E7%9B%B8%E5%85%B3%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name" content="Neil&#39;s Blog">
-<meta property="og:description" content="ctf刷题">
+<meta property="og:description" content="PHP相关漏洞利用以及危害">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-07-22T14:45:44.000Z">
-<meta property="article:modified_time" content="2022-07-23T05:35:16.788Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220722233518.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220722233635.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220722233848.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220722233948.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220722234017.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220723002110.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220723002741.png">
+<meta property="article:published_time" content="2022-07-22T15:05:53.000Z">
+<meta property="article:modified_time" content="2022-07-23T05:35:38.111Z">
 <meta property="article:author" content="Neiiiiil">
-<meta property="article:tag" content="CTF">
 <meta property="article:tag" content="web渗透">
+<meta property="article:tag" content="PHP">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220722233518.png">
   
   
   
-  <title>CTFShow练习 - Neil&#39;s Blog</title>
+  <title>PHP相关漏洞 - Neil&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CTFShow练习"></span>
+            <span id="subtitle" data-typed-text="PHP相关漏洞"></span>
           
         </div>
 
@@ -206,7 +214,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-07-22 22:45" pubdate>
+        <time datetime="2022-07-22 23:05" pubdate>
           2022年7月22日 晚上
         </time>
       </span>
@@ -218,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          56 字
+          1.2k 字
         
       </span>
     
@@ -229,7 +237,7 @@
         
         
         
-          1 分钟
+          11 分钟
         
       </span>
     
@@ -267,14 +275,99 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">CTFShow练习</h1>
+            <h1 style="display: none">PHP相关漏洞</h1>
             
             <div class="markdown-body">
               
-              <p><strong>菜的睡不着觉了</strong></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
-<li>立一个flag, 每天至少花俩小时做ctf训练</li>
-<li>This flag start at 2022-07-23</li>
+              <h3 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h3><ul>
+<li><p>常见文件包含函数</p>
+<ul>
+<li>include()：执行到include时才包含文件，找不到被包含文件时只会产生警告，脚本将继续执行</li>
+<li>require()：只要程序一运行就包含文件，找不到被包含的文件时会产生致命错误，并停止脚本</li>
+<li>include_once()和require_once()：若文件中代码已被包含则不会再次包含</li>
+</ul>
+</li>
+<li><p>利用条件</p>
+<ul>
+<li>程序用include()等文件包含函数通过动态变量的范式引入需要包含的文件</li>
+<li>用户能够控制该动态变量</li>
+</ul>
+</li>
+<li><p>漏洞分类</p>
+<ul>
+<li>本地文件包含：可以包含本地文件，在条件允许时甚至能执行代码<ul>
+<li>上传图片马，然后包含</li>
+<li>读敏感文件，读PHP文件</li>
+<li>包含日志文件GetShell</li>
+<li>包含&#x2F;proc&#x2F;self&#x2F;envion文件GetShell</li>
+<li>包含data:或php:&#x2F;&#x2F;input等伪协议</li>
+<li>若有phpinfo则可以包含临时文件</li>
+</ul>
+</li>
+<li>远程文件包含：可以直接执行任意代码<ul>
+<li>要保证php.ini中allow_url_fopen和allow_url_include要为On</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>漏洞挖掘</p>
+<ul>
+<li>通过白盒代码审计</li>
+<li>黑盒工具挖掘</li>
+<li>awvs appscan burp</li>
+<li>w3af</li>
+</ul>
+</li>
+<li><p>本地包含漏洞</p>
+<ul>
+<li><img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220722233518.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li><p>本地包含漏洞注意事项</p>
+<ul>
+<li><img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220722233635.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li><p>截断绕过</p>
+<ul>
+<li><img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220722233848.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li><p>其他绕过</p>
+<ul>
+<li>dvwa中级难度的包含，这个主要是过滤了远程文件包含和我们目录的跳转，大小写混合输入就可以绕过远程文件包含的过滤</li>
+<li><img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220722233948.png" srcset="/img/loading.gif" lazyload></li>
+<li>目录跳转的过滤我们可以构造….&#x2F;&#x2F;….&#x2F;&#x2F;xxx.php，方式绕过，由于他只过滤一次，我们可以利用他的过滤动态拼接目录跳转，从而绕过过滤</li>
+<li><img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220722234017.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li><p>包含日志(主要是得到日志的路径)</p>
+<ul>
+<li>读日志路径</li>
+<li>文件包含漏洞读取apache配置文件</li>
+<li>index.php?page&#x3D;&#x2F;etc&#x2F;init.d&#x2F;httpd</li>
+<li>index.php?page&#x3D;&#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;httpd.conf</li>
+<li>默认位置&#x2F;var&#x2F;log&#x2F;httpd&#x2F;access_log</li>
+</ul>
+</li>
+<li><p>文件包含漏洞实例</p>
+<ul>
+<li>制作错误，写入一句话</li>
+<li><a target="_blank" rel="noopener" href="http://127.0.0.1/ekucms/index.php?s=my/show/id/%7B~eval($_POST%5Bx%5D)%7D">http://127.0.0.1/ekucms/index.php?s=my/show/id/{~eval($_POST[x])}</a></li>
+<li><img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220723002110.png" srcset="/img/loading.gif" lazyload></li>
+<li>一句话写入日志文件</li>
+<li>利用包含漏洞包含日志文件</li>
+<li>菜刀连接</li>
+</ul>
+</li>
+<li><p>PHP伪协议</p>
+<ul>
+<li>?page&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;config.php</li>
+<li>访问上述URL后会返回config.php中经过Base64加密后的字符串，解密即可得到源码</li>
+<li>allow_url_include&#x3D;On时,若执行<a target="_blank" rel="noopener" href="http://www.xxx.com/index.php?page=php://input">http://www.xxx.com/index.php?page=php://input</a>, 并且提交数据: <img src="https://raw.githubusercontent.com/Neiiiiil/picgo_img/main/20220723002741.png" srcset="/img/loading.gif" lazyload></li>
+<li>结果将在index.php所在文件下生成一句话文件shell.php</li>
+</ul>
+</li>
 </ul>
 
               
@@ -287,9 +380,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/CTF/">#CTF</a>
-      
         <a href="/tags/web%E6%B8%97%E9%80%8F/">#web渗透</a>
+      
+        <a href="/tags/PHP/">#PHP</a>
       
     </div>
   
@@ -301,8 +394,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CTFShow练习</div>
-      <div>https://neiiiiil.github.io/2022/07/22/CTFShow练习/</div>
+      <div>PHP相关漏洞</div>
+      <div>https://neiiiiil.github.io/2022/07/22/PHP相关漏洞/</div>
     </div>
     <div class="license-meta">
       
@@ -344,18 +437,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/07/22/PHP%E7%9B%B8%E5%85%B3%E6%BC%8F%E6%B4%9E/" title="PHP相关漏洞">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">PHP相关漏洞</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/07/03/windows%E5%9F%BA%E7%A1%80/" title="windows基础">
-                        <span class="hidden-mobile">windows基础</span>
+                      <a href="/2022/07/22/CTFShow%E7%BB%83%E4%B9%A0/" title="CTFShow练习">
+                        <span class="hidden-mobile">CTFShow练习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
